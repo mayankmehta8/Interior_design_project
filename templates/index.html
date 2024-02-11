@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Form</title>
+</head>
+<body>
+    <h1>Flask Form with Drop-down Menu</h1>
+    <form method="POST">
+        <label for="dropdown">Select an option:</label>
+        <select name="dropdown" id="dropdown">
+            {% for option in dropdown_options %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="dropdown2">Select an option:</label>
+        <select name="dropdown2" id="dropdown2">
+            {% for option1 in dropdown_options2 %}
+                <option value="{{ option1 }}">{{ option1 }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <br><br><br>
+    <form method="post" enctype="multipart/form-data">
+
+        {{ form.hidden_tag() }}
+        {% for error in form.photo.errors %}
+        <span style="color: red;">{{error}}</span>
+        {% endfor %}
+        <div>
+            {{ form.photo() }}
+
+        </div>
+        <div>
+            {{ form.submit() }}
+
+        </div>
+    </form>
+
+    {% if file_url %}
+    <img src="{{ file_url }}" alt="">
+    {% endif %}
+
+
+    <a href="{{ url_for('output') }}"><button>Go to Other URL</button></a>
+</body>
+</html>

@@ -6,7 +6,15 @@
     <title>Flask Form</title>
 </head>
 <body>
-    <h1>Interior Design Recommender</h1>
+    
+    <div style="
+        margin: auto;
+        width: 50%;
+        border: 3px solid green;
+        padding: 10px;
+      ">
+    <h1 style="text-align: center;">Interior Design Recommender</h1>
+    
     <form method="POST">
         <label for="dropdown">Select your preferred style:</label>
         <select name="dropdown" id="dropdown">
@@ -44,10 +52,12 @@
     </form>
 
     {% if file_url %}
-    <img src="{{ file_url }}" alt="">
+    <img style="max-width:100%;" src="{{ file_url }}" alt="">
     {% endif %}
 
 
-    <a href="{{ url_for('output') }}"><button>Go to Other URL</button></a>
+    <a href="{{ url_for('output') }}"><button>Go to Output</button></a>
+
+    </div>
 </body>
 </html>

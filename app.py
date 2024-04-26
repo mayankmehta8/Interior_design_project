@@ -7,7 +7,7 @@ import replicate
 import os
 
 
-os.environ["REPLICATE_API_TOKEN"] = "r8_Q0ac6yTAIPXXdqNRbGzqCygMp7ZooYk2X9YP5"
+os.environ["REPLICATE_API_TOKEN"] = "r8_VFLGNMs3bog9cJqEBhfphlNUB8rG83C2CJRPS"
 
 app = Flask(__name__)
 app.secret_key= 'sadasdfasdfsa'
@@ -29,10 +29,11 @@ class UploadForm(FlaskForm):
 
 
 # Sample data for the drop-down menu
-dropdown_options = ["Professional", "Comfy", "Cute"]
+dropdown_options = ["Professional", "Comfy", "Cute", "Rustic","brutalist","minimalistc", "industrial","japanese","scandinavian","traditional"]
 dropdown_options2 = ["Living Room", "Bedroom", "Backyard"]
 selected_option1 =''
 selected_option2=''
+input_text=''
 @app.route('/upload/<filename>')
 def get_file(filename):
     return send_from_directory(app.config['UPLOADED_PHOTOS_DEST'], filename)
@@ -49,8 +50,9 @@ def index():
     else:
         file_url=None 
     selected_option1 = request.form.get('dropdown')
-    selected_option2 = request.form.get('dropdown2')    
-    return render_template('index.html', form = form, file_url=file_url, dropdown_options=dropdown_options, dropdown_options2=dropdown_options2)
+    selected_option2 = request.form.get('dropdown2')  
+    input_text= request.form.get('input_text')  
+    return render_template('index.html', form = form, file_url=file_url, dropdown_options=dropdown_options, dropdown_options2=dropdown_options2,input_text=input_text )
 @app.route('/output', methods=['GET','POST'])
 def output():
     image_file=open(fname, "rb")
@@ -59,13 +61,19 @@ def output():
         input={
             "image": image_file,
             "prompt": f"{selected_option1} {selected_option2} Editorial Style Photo, Symmetry, Straight On, Modern Living Room, Large Window, Leather, Glass, Metal, Wood Paneling, Neutral Palette, Ikea, Natural Light, Apartment, Afternoon, Serene, Contemporary, 4k",
-            "a_prompt": "best quality, extremely detailed, photo from Pinterest, interior, cinematic photo, ultra-detailed, ultra-realistic, award-winning"
+            "a_prompt": "best quality, extremely detailed, photo from Pinterest, interior, cinematic photo, ultra-detailed, ultra-realistic, award-winning",
+            "num_samples":"4",
+            "n_prompt":"lowres, watermark, banner, logo, watermark, contactinfo, text, deformed, blurry, blur, out of focus, out of frame, surreal, extra, ugly, upholstered walls, fabric walls, plush walls, mirror, mirrored"
         }
         )
-    
-    source=output[1]
-    source1=output[0]
-    return render_template("Output.html", source=source, source1=source1)
+    print(output)
+    source=output[0]
+    source1=output[1]
+    source2=output[2]
+    source3=output[3]
+    source4=output[4]
+
+    return render_template("Output.html", source=source, source1=source1,source2=source2, source3=source3,source4=source4)
 if __name__ == '__main__':
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     app.run(debug=True)

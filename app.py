@@ -7,7 +7,7 @@ import replicate
 import os
 
 
-os.environ["REPLICATE_API_TOKEN"] = "r8_Q0ac6yTAIPXXdqNRbGzqCygMp7ZooYk2X9YP5"
+os.environ["REPLICATE_API_TOKEN"] = ""
 
 app = Flask(__name__)
 app.secret_key= 'sadasdfasdfsa'

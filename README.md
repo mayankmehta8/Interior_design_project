@@ -93,9 +93,14 @@ View/download the AI-styled interior design.
 
 📸 Example (before → after)
 Input	
+
+
 <img width="461" height="494" alt="Screenshot 2025-08-31 at 4 16 22 PM" src="https://github.com/user-attachments/assets/c944950d-d8f3-4fd2-9e3f-308a86607ff2" />
 
 Output
+
+
+
 <img width="543" height="441" alt="Screenshot 2025-08-31 at 4 14 59 PM" src="https://github.com/user-attachments/assets/934c9954-64fc-4f93-ae85-55cc6a3c6ee9" />
 	
 🤝 Contributing
